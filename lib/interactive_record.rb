@@ -57,9 +57,7 @@ class InteractiveRecord
     value = attributes_hash.values.first
     
     value_format = value.class == Fixnum ? value : "'#{value}'"
-        return value 
-      else
-        return 
-    DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attributes_hash.keys.first} = #{value}")
+    
+    DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attributes_hash.keys.first} = #{value_format}")
   end
 end

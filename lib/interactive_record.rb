@@ -56,11 +56,10 @@ class InteractiveRecord
   def self.find_by(attributes_hash)
     value = attributes_hash.values.first
     
-    value_format = 
-      if value.class == Fixnum
+    value_format = value.class == Fixnum ? value : "'#{value}'"
         return value 
       else
-        return "'#{value}'"
+        return 
     DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attributes_hash.keys.first} = #{value}")
   end
 end
